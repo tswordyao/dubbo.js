@@ -72,9 +72,11 @@ export class Discoverer extends SDKBase {
   async _init() {
     this.on('update:providers', (addressList) => {
       let providers = Discoverer.getProviderList(addressList);
+      console.log('providers1======', providers);
       providers = this.filterProvider(providers);
+      console.log('providers2======', providers);
       providers = Discoverer.checkMethods(providers, this.methods);
-
+      console.log('providers3======', providers);
       this.emit('update:serverAddress', providers);
     });
 
@@ -85,6 +87,7 @@ export class Discoverer extends SDKBase {
     this.registry.subscribe({
       interfaceName: this.interfaceName
     }, (addressList) => {
+      console.log('=======interface:', this.interfaceName, '=====', addressList);
       this.emit('update:providers', addressList);
     });
 
@@ -104,7 +107,8 @@ export class Discoverer extends SDKBase {
       const isVersionMatched = !this.version || version === this.version;
       const isGroupMatched = !this.group || group === this.group;
       const isProtocolMatched = !this.protocol || protocol === (this.protocol + ':');
-
+      console.log('filterProvider=====', `${version} === ${this.version}`,
+        `${group} === ${this.group}`, `${protocol} === ${(this.protocol + ':')}`);
       return isVersionMatched && isGroupMatched && isProtocolMatched;
     });
   }
