@@ -293,6 +293,11 @@ export class Consumer extends SDKBase {
       const discoverer = new Discoverer(this.options);
       discoverer.on('update:providerList', (providerList) => {
         // this.serverAddress = serverAddress;
+        try {
+          this.registry.logger.info('==== dubbo zookeeper changed', providerList.length);
+        } catch (e) {
+          console.error('==== dubbo zookeeper changed', providerList.length);
+        }
         this.providerList = providerList;
       });
       await discoverer.ready();
