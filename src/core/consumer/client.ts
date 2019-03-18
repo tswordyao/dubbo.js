@@ -333,11 +333,13 @@ export class JsonRpcClient {
         contentType: 'json',
         headers
       }, function (err, body) {
+        console.log();
         if (err) {
           reject(err);
         } else {
           if (!body) {
             console.error(hostname, port, 'null body error', err, body);
+            reject(new Error(`null body request from ${hostname}${port ? `:${port}` : ''}`));
           }
 
           resolve({
