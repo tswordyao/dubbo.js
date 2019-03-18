@@ -255,6 +255,7 @@ export class Consumer extends SDKBase {
         // 4.2.1 未超出 Retry阈值，Retry
         // 4.2.2 如果超出 Retry 阈值，降级（Mock）
         // 4.2.3 CircuitBreaker.failed
+          this.registry.logger.error(err);
           console.error(err);
           item.failed();
 
