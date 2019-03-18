@@ -336,6 +336,10 @@ export class JsonRpcClient {
         if (err) {
           reject(err);
         } else {
+          if (!body) {
+            console.error(hostname, port, 'null body error', err, body);
+          }
+
           resolve({
             code: body.result ? (body.result.code || 200) : -1,
             body

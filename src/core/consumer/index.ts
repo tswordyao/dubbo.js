@@ -296,7 +296,7 @@ export class Consumer extends SDKBase {
         try {
           this.registry.logger.info(new Date().toISOString(), this.interfaceName, '==== dubbo zookeeper changed', providerList.length);
         } catch (e) {
-          console.error(new Date().toISOString(), this.interfaceName, '==== dubbo zookeeper changed', providerList.length);
+          console.log(new Date().toISOString(), this.interfaceName, '==== dubbo zookeeper changed', providerList.length);
         }
         this.providerList = providerList;
       });
